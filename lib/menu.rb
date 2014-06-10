@@ -14,6 +14,6 @@ Please select an option from the Main Menu:
 	end
 
 	def change_menu(selection)
-		"Oops! You can't select that yet. Please try again."	
+		message = "Oops! You can't select that yet. Please try again."	
 	end
 end

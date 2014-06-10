@@ -52,7 +52,9 @@ class Dashboard
 		if selection == "5"
 			end_program
 		else
-			menu.change_menu(selection)
+			@output_message = menu.change_menu(selection)
+			interface.give(@output_message)
+			open_main_menu
 		end
 	end
 
