@@ -1,12 +1,17 @@
 class Interface
-	attr_accessor :output, :input
+	attr_accessor :input, :output
+
+	def initialize
+		self.input = $stdin
+		self.output = $stdout
+	end
 
 	def give(output_message)
-		@output = output_message
-		puts @output
+		output.puts output_message
+		return output_message
 	end
 
 	def receive
-		"3" #gets.chomp.to_s
+		result = input.gets.chomp.to_s
 	end
 end
