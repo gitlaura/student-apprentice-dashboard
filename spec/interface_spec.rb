@@ -1,25 +1,22 @@
 require 'interface.rb'
 
-describe "Interface" do
-	before(:each) do
-		@interface = Interface.new
+describe "UI" do
+ 	before(:each) do
+		@ui = UI.new
 		
 		@input = StringIO.new("this message\n")
-		@output = $stdout.clone
+ 		@output = $stdout.clone
 
-		@interface.input = @input
-		@interface.output = @output
+ 		@user_input = @ui.receive(@input)
+ 		@message_for_user = @ui.give("message for you", @output)
+ 	end
 
-		@user_input = @interface.receive
-		@user_message = @interface.give("this message")
-	end
+ 	it "should output the message for the user" do
+ 		@message_for_user.should == "message for you"
+ 	end
 
-	it "should output the user message" do
-		@user_message.should == "this message"
-	end
-
-	it "should return the user's selection" do
-		@user_input.should == "this message"
-	end
+ 	it "should return the user's input" do
+ 		@user_input.should == "this message"
+ 	end
 
 end

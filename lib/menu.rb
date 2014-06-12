@@ -1,19 +1,26 @@
-require 'dashboard.rb'
-
 class Menu
-	def show_main_menu
-		"
-Please select an option from the Main Menu:
-1) Student Account
-2) Schedule
-3) Progress
-4) Knowledge
-5) Exit Program
+	attr_accessor :selection, :invalid_options, :exit_option
 
-"
+	def initialize
+		@invalid_options = [1,2,3,4]
+		@exit_option = 5
 	end
 
-	def change_menu(selection)
-		message = "Oops! You can't select that yet. Please try again."	
+	def make_move(selection)
+		@selection = selection
+		MessageCenter.invalid_selection if invalid?(@selection) == true
+		"Exit" if exit?(@selection) == true
+	end
+
+	def invalid?(selection)
+		if @invalid_options.include?(selection)
+			true
+		end
+	end	
+
+	def exit?(selection)
+		if selection == @exit_option
+			true
+		end
 	end
 end

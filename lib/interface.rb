@@ -1,17 +1,17 @@
-class Interface
-	attr_accessor :input, :output
+class UI
+	attr_accessor :stdin, :stdout
 
 	def initialize
-		self.input = $stdin
-		self.output = $stdout
+		@stdin = $stdin
+		@stdout = $stdout
 	end
 
-	def give(output_message)
+	def give(output_message, output=@stdout)
 		output.puts output_message
 		return output_message
 	end
 
-	def receive
+	def receive(input=@stdin)
 		result = input.gets.chomp.to_s
 	end
 end
