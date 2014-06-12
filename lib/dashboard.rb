@@ -21,22 +21,24 @@ class Dashboard
 		get_valid_info
 	end
 
-	def display_welcome_message
-		first = @student.student_first_name
-		last = @student.student_last_name
+	def display_welcome_message(first, last)
 		@mc.welcome_message(first, last)
 	end
 
 	def get_valid_menu_selection(menu_type)
 		@mc.display_menu(menu_type)
-		@selection = @mc.get_menu_selection
-		return @selection if @selection > 0
+		selection = @mc.get_menu_selection
+		return selection if selection > 0
 		@mc.display_integer_message
-		get_menu_selection(menu_type)
+		get_valid_menu_selection(menu_type)
 	end
 
-	def act_on_main_menu(selection, menu_type)
-		@menu.make_move(selection, menu_type)
+	def act_on_menu(selection, menu_type)
+		next_move = @menu.make_move(selection, menu_type)
+	end
+
+	def option_not_available
+		@mc.display_invalid_selection
 	end
 
 	def exit_program

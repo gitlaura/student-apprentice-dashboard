@@ -38,8 +38,8 @@ describe "MessageCenter" do
 		expect(@mc).to respond_to(:display_string_message)
 	end
 
-	it "calls the invalid selection message" do
-		expect(@mc).to respond_to(:invalid_selection)
+	it "displays the invalid selection message" do
+		expect(@mc).to respond_to(:display_invalid_selection)
 	end
 
 	it "has a main menu" do

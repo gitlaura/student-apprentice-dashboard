@@ -26,16 +26,20 @@ describe "Dashboard" do
 		expect(@dashboard).to respond_to(:get_valid_menu_selection)
 	end
 
-	it "can act on the main menu selection" do
-		expect(@dashboard).to respond_to(:act_on_main_menu)
+	it "can act on the menu selection" do
+		expect(@dashboard).to respond_to(:act_on_menu)
 	end
 
 	it "returns 'Exit' if make move is 5 on Main Menu" do 
-		expect(@dashboard.act_on_main_menu(5, "Main")).to eq("Exit")
+		expect(@dashboard.act_on_menu(5, "Main")).to eq("Exit")
 	end
 
 	it "returns 'Invalid' if make move is 3 of Main Menu" do 
-		expect(@dashboard.act_on_main_menu(3, "Main")).to eq("Invalid")
+		expect(@dashboard.act_on_menu(3, "Main")).to eq("Invalid")
+	end
+
+	it "Returns invalid message if selection not available" do 
+		expect(@dashboard).to respond_to(:option_not_available)
 	end
 
 	it "exits program" do 

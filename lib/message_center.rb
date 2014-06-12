@@ -34,11 +34,14 @@ class MessageCenter
 	end
 
 	def display_menu(menu_type)
-		@ui.give(menu_type)
+		if menu_type == "Main"
+			message = write_main_menu
+			@ui.give(message)
+		end
 	end
 
 	def display_integer_message
-		message = "Must select a number. Please try again:"
+		message = "Must select a number. Please try again: "
 		@ui.give(message)
 	end
 
@@ -47,13 +50,13 @@ class MessageCenter
 		@ui.give(message)
 	end
 
-	def invalid_selection
+	def display_invalid_selection
 		message = "That option is not currently available. Please try again:"
 		@ui.give(message)
 	end
 
 	def write_main_menu
-	main_menu = "Please select an option from the Main Menu:
+"Please select an option from the Main Menu:
 1) Student Accounts
 2) Schedule
 3) Progress
