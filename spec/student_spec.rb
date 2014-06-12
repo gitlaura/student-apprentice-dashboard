@@ -1,6 +1,6 @@
 require 'student.rb'
 
-describe "When student is initialized" do 
+describe "Student" do 
 	before(:each) do
 		@student = Student.new("Laura", "Rokita")
 	end

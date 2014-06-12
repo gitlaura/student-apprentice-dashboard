@@ -5,23 +5,59 @@ class MessageCenter
 		@ui = UI.new
 	end
 
-	def self.welcome_message(first, last)
-		welcome_message = "Welcome to #{first} #{last}'s Dashboard!"
-		@ui.give(welcome_message)
+	def get_menu_selection
+		selection = @ui.receive.to_i 
 	end
 
-	def self.main_menu
-		main_menu = "Please select an option from the Main Menu:
+	def get_info
+		info = @ui.receive
+	end
+
+	def get_first_name
+		message = "What is your first name? "
+		@ui.give(message)
+	end
+
+	def get_last_name
+		message = "What is your last name? "
+		@ui.give(message)
+	end
+
+	def welcome_message(first, last)
+		message = "Welcome to #{first} #{last}'s Dashboard!"
+		@ui.give(message)
+	end
+
+	def exit
+		message = "Goodbye!"
+		@ui.give(message)
+	end
+
+	def display_menu(menu_type)
+		@ui.give(menu_type)
+	end
+
+	def display_integer_message
+		message = "Must select a number. Please try again:"
+		@ui.give(message)
+	end
+
+	def display_string_message
+		message = "Must enter some text. Please try again:"
+		@ui.give(message)
+	end
+
+	def invalid_selection
+		message = "That option is not currently available. Please try again:"
+		@ui.give(message)
+	end
+
+	def write_main_menu
+	main_menu = "Please select an option from the Main Menu:
 1) Student Accounts
 2) Schedule
 3) Progress
 4) Knowledge
 5) Exit Program"
-		@ui.give(main_menu)
-	end
-
-	def self.invalid_selection
-		invalid_selection = "That option is not currently available. Please try again:"
-		@ui.give(invalid_selection)
 	end
 end

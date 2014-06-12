@@ -6,7 +6,7 @@ describe "Menu" do
 	end
 
 	it "saves the invalid options" do
-		expect(@menu.invalid_options).not_to be(nil)
+		expect(@menu.valid_options).not_to be(nil)
 	end
 
 	it "saves the exit option" do
@@ -32,7 +32,7 @@ describe "When Main Menu wants to make move" do
 	end
 
 	it "saves the selection" do
-		@menu.make_move(5)
+		@menu.make_move(5, "Main")
 		expect(@menu.selection).to eq(5)
 	end
 
@@ -52,7 +52,7 @@ describe "When Main Menu wants to make move" do
 	end
 
 	it "returns Exit if exit is true" do
-		result = @menu.make_move(5)
+		result = @menu.make_move(5, "Menu")
 		expect(result).to eq("Exit")
 	end
 end

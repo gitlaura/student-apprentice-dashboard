@@ -1,19 +1,23 @@
 class Menu
-	attr_accessor :selection, :invalid_options, :exit_option
+	attr_accessor :selection, :valid_options, :exit_option
 
 	def initialize
-		@invalid_options = [1,2,3,4]
+		@valid_options = [5]
 		@exit_option = 5
 	end
 
-	def make_move(selection)
+	def make_move(selection, menu_type)
 		@selection = selection
-		MessageCenter.invalid_selection if invalid?(@selection) == true
-		"Exit" if exit?(@selection) == true
+		if menu_type == "Main"
+			@valid_options = [5]
+			@exit_option = 5
+		end
+		return "Invalid" if invalid?(@selection) == true
+		return "Exit" if exit?(@selection) == true
 	end
 
 	def invalid?(selection)
-		if @invalid_options.include?(selection)
+		unless @valid_options.include?(selection)
 			true
 		end
 	end	

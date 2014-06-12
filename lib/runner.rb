@@ -1,11 +1,14 @@
 class Runner
+	attr_accessor :dashboard, :student
+
 	def initialize
-		@student = Student.new
+		@dashboard = Dashboard.new
+		run_dashboard
 	end
 
-	def self.display_welcome_message
-		first = @student.student_first_name
-		last = @student.student_last_name
-		MessageCenter.welcome_message(first, last)
+	def run_dashboard
+		@first= @dashboard.get_student_first_name
+		@last = @dashboard.get_student_last_name
+		@student = Student.new(@first, @last)
 	end
 end
