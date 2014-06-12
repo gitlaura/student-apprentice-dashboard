@@ -1,3 +1,6 @@
+require_relative 'message_center.rb'
+require_relative 'menu.rb'
+
 class Dashboard
 	def initialize
 		@mc = MessageCenter.new

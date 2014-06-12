@@ -1,3 +1,5 @@
+require_relative 'interface.rb'
+
 class MessageCenter
 	attr_accessor :ui
 

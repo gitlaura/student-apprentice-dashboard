@@ -1,3 +1,6 @@
+require_relative 'dashboard.rb'
+require_relative 'student.rb'
+
 class Runner
 	attr_accessor :dashboard, :student
 
@@ -22,3 +25,5 @@ class Runner
 		@dashboard.exit_program if next_move == "Exit"
 	end
 end
+
+runner = Runner.new
