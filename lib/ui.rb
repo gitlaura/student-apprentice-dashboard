@@ -11,7 +11,7 @@ class UI
 		output.puts output_message
 	end
 
-	def receive(input=@stdin, output=@stdout)
+	def receive(input=@stdin)
 		result = input.gets.chomp.to_s
 	end
 end

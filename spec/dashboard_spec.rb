@@ -22,10 +22,6 @@ describe "Dashboard" do
 		expect(@dashboard).to respond_to(:display_welcome_message)
 	end
 
-	it "displays welcome message" do
-		expect(@dashboard).to respond_to(:display_welcome_message)
-	end
-
 	it "gets valid info input" do
 		expect(@dashboard).to respond_to(:get_valid_info)
 	end
