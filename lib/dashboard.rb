@@ -12,12 +12,12 @@ class Dashboard
 
 	def get_student_first_name
 		@mc.get_first_name
-		first = get_valid_info
+		first = get_valid_info.capitalize
 	end
 
 	def get_student_last_name
 		@mc.get_last_name
-		last = get_valid_info
+		last = get_valid_info.capitalize
 	end
 
 	def create_student(first, last)
@@ -26,7 +26,7 @@ class Dashboard
 
 	def get_valid_info
 		@info = @mc.get_info
-		return @info if @info.length > 0
+		return @info if !(@info =~ /^[-+]?[0-9]+$/) && @info.length > 0
 		@mc.display_string_message
 		get_valid_info
 	end

@@ -1,4 +1,4 @@
-require 'message_center'
+require 'message_center.rb'
 
 describe "MessageCenter" do
 	before(:each) do 

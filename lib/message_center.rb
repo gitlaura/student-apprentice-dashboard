@@ -1,4 +1,4 @@
-require_relative 'interface.rb'
+require_relative 'ui.rb'
 
 class MessageCenter
 	attr_accessor :ui
@@ -58,7 +58,7 @@ class MessageCenter
 	end
 
 	def write_main_menu
-"Please select an option from the Main Menu:
+"Please select a numeric option from the Main Menu:
 1) Student Account
 2) Schedule
 3) Progress

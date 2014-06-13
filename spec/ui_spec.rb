@@ -1,4 +1,4 @@
-require 'interface.rb'
+require 'ui.rb'
 
 describe "UI" do
  	before(:each) do
@@ -7,8 +7,9 @@ describe "UI" do
 		@input = StringIO.new("this message\n")
 
  		@user_input = @ui.receive(@input)
+ 		@output_message = @user_input
 
- 		@ui.stub(:give).and_return(@user_input)
+ 		@ui.stub(:give).and_return(@output_message)
  		@message_for_user = @ui.give(@user_input)
  	end
 

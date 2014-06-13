@@ -1,3 +1,5 @@
+require 'dashboard.rb'
+
 describe "Dashboard" do
 	before(:each) do 
 		@dashboard = Dashboard.new

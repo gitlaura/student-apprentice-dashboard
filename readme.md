@@ -9,12 +9,12 @@ This is a dashboard to help an 8th Light student apprentice keep track of their 
 How to run the program
 ----------------------
 
-This is a ruby command line application. To run the program, copy the folder to your machine, go into the lib folder, and enter: 
+This is a ruby command line application. To run the program, enter the following when you're in the dashboard folder:
 
-$ ruby dashboard.rb
+$ ruby start.rb
 
 Then follow the prompts to use the dashboard.
 
-To run the rspec tests, copy the folder to your machine, go into the dashboard folder, and enter: 
+To run the rspec tests, enter the following when you're in the dashboard folder: 
 
 $ rspec
