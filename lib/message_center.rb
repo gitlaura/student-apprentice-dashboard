@@ -43,12 +43,12 @@ class MessageCenter
 	end
 
 	def display_integer_message
-		message = "Must select a number. Please try again: "
+		message = "Must select a number. Please try again."
 		@ui.give(message)
 	end
 
 	def display_string_message
-		message = "Must enter some text. Please try again:"
+		message = "Must enter some text. Please try again"
 		@ui.give(message)
 	end
 

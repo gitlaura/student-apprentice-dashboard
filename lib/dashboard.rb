@@ -17,6 +17,10 @@ class Dashboard
 		@last = get_valid_info
 	end
 
+	def create_student
+		@student = Student.new(first, last)
+	end
+
 	def get_valid_info
 		@info = @mc.get_info
 		return @info if @info.length > 0

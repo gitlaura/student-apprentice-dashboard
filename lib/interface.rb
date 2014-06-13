@@ -7,8 +7,8 @@ class UI
 	end
 
 	def give(output_message, output=@stdout)
+		output.puts ""
 		output.puts output_message
-		return output_message
 	end
 
 	def receive(input=@stdin)

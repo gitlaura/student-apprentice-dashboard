@@ -5,14 +5,15 @@ describe "UI" do
 		@ui = UI.new
 		
 		@input = StringIO.new("this message\n")
- 		@output = $stdout.clone
 
  		@user_input = @ui.receive(@input)
- 		@message_for_user = @ui.give("message for you", @output)
+
+ 		@ui.stub(:give).and_return(@user_input)
+ 		@message_for_user = @ui.give(@user_input)
  	end
 
  	it "should output the message for the user" do
- 		@message_for_user.should == "message for you"
+ 		@message_for_user.should == "this message"
  	end
 
  	it "should return the user's input" do
