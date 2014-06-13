@@ -59,7 +59,7 @@ class MessageCenter
 
 	def write_main_menu
 "Please select an option from the Main Menu:
-1) Student Accounts
+1) Student Account
 2) Schedule
 3) Progress
 4) Knowledge

@@ -2,6 +2,7 @@ describe "Dashboard" do
 	before(:each) do 
 		@dashboard = Dashboard.new
 		@dashboard.stub(:exit_program).and_return("Goodbye!")
+		@student = @dashboard.create_student("First", "Last")
 	end
 
 	it "gets the student's name" do 
@@ -11,7 +12,8 @@ describe "Dashboard" do
 
 	it "creates a student" do 
 		expect(@dashboard).to respond_to(:create_student)
-		expect(@dashboard).to respond_to(:create_student)
+		expect(@student.student_first_name).to eq("First")
+		expect(@student.student_last_name).to eq("Last")
 	end
 
 	it "displays welcome message" do

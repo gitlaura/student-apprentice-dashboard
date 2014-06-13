@@ -1,7 +1,10 @@
 require_relative 'message_center.rb'
 require_relative 'menu.rb'
+require_relative 'student.rb'
 
 class Dashboard
+	attr_accessor :student
+
 	def initialize
 		@mc = MessageCenter.new
 		@menu = Menu.new
@@ -9,15 +12,15 @@ class Dashboard
 
 	def get_student_first_name
 		@mc.get_first_name
-		@first = get_valid_info
+		first = get_valid_info
 	end
 
 	def get_student_last_name
 		@mc.get_last_name
-		@last = get_valid_info
+		last = get_valid_info
 	end
 
-	def create_student
+	def create_student(first, last)
 		@student = Student.new(first, last)
 	end
 
