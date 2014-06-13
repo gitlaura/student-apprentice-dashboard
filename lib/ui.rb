@@ -12,6 +12,6 @@ class UI
 	end
 
 	def receive(input=@stdin)
-		result = input.gets.chomp.to_s
+		input.gets.chomp.to_s
 	end
 end
