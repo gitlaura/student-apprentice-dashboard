@@ -26,23 +26,27 @@ describe "MessageCenter" do
 		expect(@message_center).to respond_to(:exit)
 	end
 
-	it "displays menus" do
-		expect(@message_center).to respond_to(:display_menu)
-	end
-
 	it "displays error if selection is not an integer" do
 		expect(@message_center).to respond_to(:display_invalid_selection_message)
 	end
 
 	it "displays error if selection is not an string" do
-		expect(@message_center).to respond_to(:display_string_message)
+		expect(@message_center).to respond_to(:display_invalid_string_message)
 	end
 
 	it "displays the invalid selection message" do
-		expect(@message_center).to respond_to(:display_invalid_selection)
+		expect(@message_center).to respond_to(:display_option_not_available_message)
 	end
 
-	it "has a main menu" do
-		expect(@message_center).to respond_to(:create_menu)
+	it "displays menus" do
+		expect(@message_center).to respond_to(:display_menu)
+	end
+
+	it "creates the main menu" do
+		expect(@message_center.create_menu(1).to_s).to include("Main Menu")
+	end
+
+	it "creates the student account menu" do
+		expect(@message_center.create_menu(2).to_s).to include("Student Account Menu")
 	end
 end

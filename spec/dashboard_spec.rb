@@ -25,6 +25,11 @@ describe "Dashboard" do
 		expect(@dashboard).to respond_to(:get_valid_info)
 	end
 
+	it "returns false if string is not valid" do
+		expect(@dashboard.valid_string?("lau/a")).to eq(false)
+		expect(@dashboard.valid_string?("")).to eq(false)
+	end
+
 	it "gets valid menu selection" do
 		expect(@dashboard).to respond_to(:get_valid_menu_selection)
 	end

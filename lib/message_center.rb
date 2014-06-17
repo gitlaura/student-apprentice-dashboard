@@ -1,7 +1,7 @@
 require_relative 'ui.rb'
 
 class MessageCenter
-	attr_accessor :ui, :main_menu, :student_account_menu
+	attr_reader :ui
 
 	def initialize
 		@ui = UI.new
@@ -40,12 +40,12 @@ class MessageCenter
 		@ui.give(message)
 	end
 
-	def display_string_message
+	def display_invalid_string_message
 		message = "Must enter some text. Please try again"
 		@ui.give(message)
 	end
 
-	def display_invalid_selection
+	def display_option_not_available_message
 		message = "That option is not currently available. Please try again:"
 		@ui.give(message)
 	end

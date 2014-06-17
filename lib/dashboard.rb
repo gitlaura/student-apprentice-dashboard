@@ -25,15 +25,21 @@ class Dashboard
 		@student = Student.new(first, last)
 	end
 
-	def valid?
-		!(@info =~ /^[-+]?[0-9]+$/) && @info.length > 0
-	end
-
 	def get_valid_info
-		@info = @message_center.get_info
-		return @info if valid?
+		info = @message_center.get_info
+		return info if valid_string?(info)
 		@message_center.display_string_message
 		get_valid_info
+	end
+
+	def valid_string?(input)
+		if input.length == 0
+			false
+		else
+			input.each_char do |letter|
+				return false if !(letter =~ /[a-z]/i)
+			end
+		end
 	end
 
 	def display_welcome_message(first, last)
