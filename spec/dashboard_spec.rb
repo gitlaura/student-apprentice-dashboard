@@ -3,7 +3,6 @@ require 'dashboard.rb'
 describe "Dashboard" do
 	before(:each) do 
 		@dashboard = Dashboard.new
-		@dashboard.stub(:exit_program).and_return("Goodbye!")
 		@student = @dashboard.create_student("First", "Last")
 	end
 
@@ -31,22 +30,24 @@ describe "Dashboard" do
 	end
 
 	it "can act on the menu selection" do
-		expect(@dashboard).to respond_to(:act_on_menu)
+		expect(@dashboard).to respond_to(:make_selection)
 	end
 
 	it "returns 'Exit' if make move is 5 on Main Menu" do 
-		expect(@dashboard.act_on_menu(5, "Main")).to eq("Exit")
+		expect(@dashboard.make_selection(1, 5)).to eq(:exit)
 	end
 
 	it "returns 'Invalid' if make move is 3 of Main Menu" do 
-		expect(@dashboard.act_on_menu(3, "Main")).to eq("Invalid")
+		expect(@dashboard.make_selection(1, 3)).to eq(:invalid)
 	end
 
-	it "Returns invalid message if selection not available" do 
-		expect(@dashboard).to respond_to(:option_not_available)
+	it "message center displays invalid selections" do 
+		@dashboard.message_center.should_receive(:display_invalid_selection)
+		@dashboard.option_not_available
 	end
 
 	it "exits program" do 
-		expect(@dashboard.exit_program).to eq("Goodbye!")
+		@dashboard.message_center.should_receive(:exit)
+		@dashboard.exit_program
 	end
 end

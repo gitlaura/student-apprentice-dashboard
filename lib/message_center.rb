@@ -1,7 +1,7 @@
 require_relative 'ui.rb'
 
 class MessageCenter
-	attr_accessor :ui
+	attr_accessor :ui, :main_menu, :student_account_menu
 
 	def initialize
 		@ui = UI.new
@@ -35,14 +35,7 @@ class MessageCenter
 		@ui.give(message)
 	end
 
-	def display_menu(menu_type)
-		if menu_type == "Main"
-			message = write_main_menu
-			@ui.give(message)
-		end
-	end
-
-	def display_integer_message
+	def display_invalid_selection_message
 		message = "Must select a number. Please try again."
 		@ui.give(message)
 	end
@@ -57,12 +50,24 @@ class MessageCenter
 		@ui.give(message)
 	end
 
-	def write_main_menu
-"Please select a numeric option from the Main Menu:
-1) Student Account
-2) Schedule
-3) Progress
-4) Knowledge
-5) Exit Program"
+	def display_menu(menu_number)
+		message = create_menu(menu_number)
+		@ui.give(message)
+	end
+
+	def create_menu(menu_number)
+		main_menu = ["Main Menu", "Student Account", "Schedule", "Progress", "Knowledge", "Exit Program"]
+		student_account_menu = ["Student Account Menu", "Student Name", "Mentor Name", "Start Date", "Expected End Date", "Back to Main Menu"]
+		
+		valid_main_menu_options = [main_menu, student_account_menu]
+		current_menu = valid_main_menu_options[menu_number-1]
+
+		message = "Please select a numeric option from the #{current_menu[0]}:\n"
+		i = 1
+		until i == current_menu.length
+			message << "#{i}) #{current_menu[i]} \n"
+			i += 1
+		end
+		message
 	end
 end

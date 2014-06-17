@@ -1,29 +1,31 @@
 class Menu
-	attr_accessor :selection, :valid_options, :exit_option
+	attr_accessor :menus, :exit_option, :back_menu, :student_name_menu, :student_account_menu, :mentor_menu, :main_menu
 
 	def initialize
-		@valid_options = [5]
-		@exit_option = 5
+		@menus = {:main_menu => 1, :student_account_menu => 2, :student_name_menu => 3, :mentor_menu => 4}
 	end
 
-	def make_move(selection, menu_type)
-		@selection = selection
-		if menu_type == "Main"
-			@valid_options = [5]
-			@exit_option = 5
-		end
-		return "Invalid" if invalid?(@selection) == true
-		return "Exit" if exit?(@selection) == true
+	def get_menu_number(menu_type)
+		@menus[menu_type]
 	end
 
-	def invalid?(selection)
-		unless @valid_options.include?(selection)
-			true
-		end
-	end	
+	def make_move(menu_number, selection)
+		student_name_menu = [:view_student_name, :update_student_name, :student_account_menu, :main_menu]
+		mentor_menu = [:view_mentor, :update_mentor, :student_account_menu, :main_menu]
+		student_account_menu = [:student_name_menu, :mentor_menu, :invalid, :invalid, @main_menu]
+		main_menu = [:student_account_menu, :schedule_menu, :invalid, :invalid, :exit]
+		valid_current_menu_options = [main_menu, student_account_menu, student_name_menu, mentor_menu]
+		
+		current_menu = valid_current_menu_options[menu_number-1]
 
-	def exit?(selection)
-		if selection == @exit_option
+		return :invalid if invalid_selection?(current_menu, selection)
+			
+		menu_index = selection - 1
+		next_move = current_menu[menu_index]
+	end
+
+	def invalid_selection?(current_menu, selection)
+		if selection > current_menu.length
 			true
 		end
 	end

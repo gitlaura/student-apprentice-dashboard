@@ -7,8 +7,8 @@ describe "UI" do
 		@input = StringIO.new("test info\n")
 		@output = StringIO.new
 
- 		@input_received = @ui.receive(@input)
- 		@ui.give("test message", @output)
+ 		@input_received = @ui.receive(input: @input)
+ 		@ui.give("test message", output: @output)
  	end
 
  	it "should output a message for the user" do
