@@ -49,4 +49,8 @@ describe "MessageCenter" do
 	it "creates the student account menu" do
 		expect(@message_center.create_menu(2).to_s).to include("Student Account Menu")
 	end
+
+	it "displays not added yet message with correct object" do
+		expect(@message_center).to respond_to(:display_not_added_yet_message)
+	end
 end

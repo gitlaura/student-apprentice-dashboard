@@ -1,34 +1,33 @@
 require_relative 'message_center.rb'
-require_relative 'menu.rb'
-require_relative 'student.rb'
+require_relative 'menu_selector.rb'
+require_relative 'student_account_menu.rb'
+require_relative 'runner.rb'
 
 class Dashboard
-	attr_accessor :student
+	attr_accessor :student, :mentor, :menu_selector
 	attr_reader :message_center
 
 	def initialize
 		@message_center = MessageCenter.new
-		@menu = Menu.new
+		@menu_selector = MenuSelector.new
+		@mentor = Mentor.new
+		@student = Student.new
 	end
 
-	def get_student_first_name
-		@message_center.get_first_name
+	def get_first_name(person_type)
+		@message_center.get_first_name(person_type)
 		get_valid_info.capitalize
 	end
 
-	def get_student_last_name
-		@message_center.get_last_name
+	def get_last_name(person_type)
+		@message_center.get_last_name(person_type)
 		get_valid_info.capitalize
-	end
-
-	def create_student(first, last)
-		@student = Student.new(first, last)
 	end
 
 	def get_valid_info
 		info = @message_center.get_info
 		return info if valid_string?(info)
-		@message_center.display_string_message
+		@message_center.display_invalid_string_message
 		get_valid_info
 	end
 
@@ -42,12 +41,12 @@ class Dashboard
 		end
 	end
 
-	def display_welcome_message(first, last)
-		@message_center.welcome_message(first, last)
+	def display_welcome_message
+		@message_center.welcome_message(@student.first_name, @student.last_name)
 	end
 
 	def get_menu_number(menu_type)
-		@menu.get_menu_number(menu_type)
+		@menu_selector.get_menu_number(menu_type)
 	end
 
 	def get_valid_menu_selection(menu_number)
@@ -59,11 +58,59 @@ class Dashboard
 	end
 
 	def make_selection(menu_number, selection)
-		@menu.make_move(menu_number, selection)
+		@menu_selector.make_move(menu_number, selection)
 	end
 
 	def option_not_available
-		@message_center.display_invalid_selection
+		@message_center.display_option_not_available_message
+	end
+
+	def take_action(action)
+		if action == (:view_student_name)
+			view_student
+		elsif action == (:update_student_name)
+			update_student
+			view_student
+		elsif action == (:view_mentor)
+			view_mentor
+		elsif action == (:update_mentor)
+			update_mentor
+			view_mentor
+		end
+	end
+
+	def view_student
+		first_name = @student.first_name
+		last_name = @student.last_name
+		if first_name.nil? || last_name.nil? 
+			@message_center.display_not_added_yet_message("student")
+			:add_student_menu
+		else
+			@message_center.display_name("Student", first_name, last_name)
+			:back_to_student_account_menu
+		end
+	end
+
+	def update_student
+		@student.first_name = get_first_name("student")
+		@student.last_name = get_last_name("student")
+	end
+
+	def view_mentor
+		first_name = @mentor.first_name
+		last_name = @mentor.last_name
+		if first_name.nil? || last_name.nil? 
+			@message_center.display_not_added_yet_message("mentor")
+			:add_mentor_menu
+		else
+			@message_center.display_name("Mentor", first_name, last_name)
+			:back_to_student_account_menu
+		end
+	end
+
+	def update_mentor
+		@mentor.first_name = get_first_name("mentor")
+		@mentor.last_name = get_last_name("mentor")
 	end
 
 	def exit_program

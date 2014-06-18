@@ -3,18 +3,14 @@ require 'dashboard.rb'
 describe "Dashboard" do
 	before(:each) do 
 		@dashboard = Dashboard.new
-		@student = @dashboard.create_student("First", "Last")
+		@student = Student.new
+		@student.first_name = "First"
+		@student.last_name = "Last"
 	end
 
 	it "gets the student's name" do 
-		expect(@dashboard).to respond_to(:get_student_first_name)
-		expect(@dashboard).to respond_to(:get_student_last_name)
-	end
-
-	it "creates a student" do 
-		expect(@dashboard).to respond_to(:create_student)
-		expect(@student.student_first_name).to eq("First")
-		expect(@student.student_last_name).to eq("Last")
+		expect(@dashboard).to respond_to(:get_first_name)
+		expect(@dashboard).to respond_to(:get_last_name)
 	end
 
 	it "displays welcome message" do
@@ -47,7 +43,7 @@ describe "Dashboard" do
 	end
 
 	it "message center displays invalid selections" do 
-		@dashboard.message_center.should_receive(:display_invalid_selection)
+		@dashboard.message_center.should_receive(:display_option_not_available_message)
 		@dashboard.option_not_available
 	end
 
@@ -55,4 +51,16 @@ describe "Dashboard" do
 		@dashboard.message_center.should_receive(:exit)
 		@dashboard.exit_program
 	end
+
+	it "can take actions once action is selected" do
+		expect(@dashboard).to respond_to(:take_action)
+	end
+
+	it "selects the correct method to take action" do
+		expect(@dashboard).to respond_to(:view_mentor)
+		expect(@dashboard).to respond_to(:update_mentor)
+		expect(@dashboard).to respond_to(:view_student)
+		expect(@dashboard).to respond_to(:update_student)
+	end
+
 end
