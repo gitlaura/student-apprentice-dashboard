@@ -8,20 +8,9 @@ describe "Dashboard" do
 	end
 
 	it "gets a first name" do 
-		@dashboard.message_center.should_receive(:get_first_name)
-		@dashboard.should_receive(:get_valid_info) {"first"}
-		expect(@dashboard.get_first_name("student")).to eq("First")
-	end
-
-	it "gets a last name" do 
-		@dashboard.message_center.should_receive(:get_last_name)
-		@dashboard.should_receive(:get_valid_info) {"last"}
-		expect(@dashboard.get_last_name("student")).to eq("Last")
-	end
-
-	it "gets valid info input" do
-		@dashboard.message_center.should_receive(:get_info) {"first"}
-		@dashboard.get_valid_info
+		@dashboard.message_center.should_receive(:get_name_message)
+		@dashboard.message_center.should_receive(:get_info) {"first"} 
+		expect(@dashboard.get_name("student", "first")).to eq("First")
 	end
 
 	it "returns false if string is not valid" do
@@ -71,13 +60,12 @@ describe "Dashboard" do
 	end
 
 	it "update mentor asks for a new first and last name" do 
-		@dashboard.should_receive(:get_first_name)
-		@dashboard.should_receive(:get_last_name)
+		@dashboard.should_receive(:get_name).twice
 		@dashboard.update_mentor
 	end
 
 	it "exits program" do 
 		@dashboard.message_center.should_receive(:exit)
-		@dashboard.exit_program
+		@dashboard.exit
 	end
 end

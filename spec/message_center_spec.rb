@@ -16,9 +16,8 @@ describe "MessageCenter" do
 	end
 
 	it "asks for a person's name" do
-		@message_center.ui.should_receive(:give).twice
-		@message_center.get_first_name("student")
-		@message_center.get_last_name("mentor")
+		@message_center.ui.should_receive(:give)
+		@message_center.get_name_message("mentor", "first")
 	end
 
 	it "displays the welcome message" do

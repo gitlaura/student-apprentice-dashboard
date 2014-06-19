@@ -19,7 +19,7 @@ class Runner
 		selection = @dashboard.get_valid_menu_selection(menu_number)
 		next_move = @dashboard.make_selection(menu_number, selection)
 		if next_move == :exit 
-			exit_program
+			exit
 		elsif next_move == :invalid
 			option_not_available(menu_type)
 		elsif 
@@ -41,7 +41,7 @@ class Runner
 		run_menu(menu_type)
 	end
 
-	def exit_program
-		@dashboard.exit_program
+	def exit
+		@dashboard.exit
 	end
 end

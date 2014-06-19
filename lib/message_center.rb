@@ -15,12 +15,8 @@ class MessageCenter
 		info = @ui.receive
 	end
 
-	def get_first_name(person_type)
-		@ui.give("What is the #{person_type}'s first name? ")
-	end
-
-	def get_last_name(person_type)
-		@ui.give("What is the #{person_type}'s last name? ")
+	def get_name_message(student_or_mentor, first_or_last)
+		@ui.give("What is the #{student_or_mentor}'s #{first_or_last} name? ")
 	end
 
 	def welcome_message(first, last)

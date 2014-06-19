@@ -14,21 +14,12 @@ class Dashboard
 		@student = Student.new
 	end
 
-	def get_first_name(person_type)
-		@message_center.get_first_name(person_type)
-		get_valid_info.capitalize
-	end
-
-	def get_last_name(person_type)
-		@message_center.get_last_name(person_type)
-		get_valid_info.capitalize
-	end
-
-	def get_valid_info
-		info = @message_center.get_info
-		return info if valid_string?(info)
+	def get_name(student_or_mentor, first_or_last)
+		@message_center.get_name_message(student_or_mentor, first_or_last)
+		name = @message_center.get_info
+		return name.capitalize if valid_string?(name)
 		@message_center.display_invalid_string_message
-		get_valid_info
+		get_name(student_or_mentor, first_or_last)
 	end
 
 	def valid_string?(input)
@@ -90,8 +81,8 @@ class Dashboard
 	end
 
 	def update_student
-		@student.first_name = get_first_name("student")
-		@student.last_name = get_last_name("student")
+		@student.first_name = get_name("student", "first")
+		@student.last_name = get_name("student", "last")
 	end
 
 	def view_mentor
@@ -105,11 +96,11 @@ class Dashboard
 	end
 
 	def update_mentor
-		@mentor.first_name = get_first_name("mentor")
-		@mentor.last_name = get_last_name("mentor")
+		@mentor.first_name = get_name("mentor", "first")
+		@mentor.last_name = get_name("mentor", "last")
 	end
 
-	def exit_program
+	def exit
 		@message_center.exit
 	end
 end

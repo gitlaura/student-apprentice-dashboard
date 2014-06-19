@@ -38,6 +38,6 @@ describe "Runner" do
 	end
 
 	it "exits the program" do
-		expect(@runner).to respond_to(:exit_program)
+		expect(@runner).to respond_to(:exit)
 	end
 end
