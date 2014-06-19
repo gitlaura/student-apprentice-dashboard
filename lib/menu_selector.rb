@@ -12,11 +12,11 @@ class MenuSelector
 			[[:mentor_menu, :view_mentor, :update_mentor, :student_account_menu, :main_menu],
 			["Mentor Menu", "View Mentor", "Update Mentor", "Go Back", "Back to Main Menu"]],
 			[[:add_student_menu, :update_student, :student_account_menu],
-			["Options", "Add Student", "Back to Student Account"]],
+			["Options", "Add Student", "Go Back"]],
 			[[:add_mentor_menu, :update_mentor, :student_account_menu],
-			["Options", "Add Mentor", "Back to Student Account"]],
+			["Options", "Add Mentor", "Go Back"]],
 			[[:back_to_student_account_menu, :student_account_menu, :main_menu],
-			["Options", "Back to Student Account", "Back to Main Menu"]]
+			["Options", "Go Back", "Back to Main Menu"]]
 		]
 	end
 
