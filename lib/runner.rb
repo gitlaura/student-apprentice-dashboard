@@ -22,7 +22,7 @@ class Runner
 			exit
 		elsif next_move == :invalid
 			option_not_available(menu_type)
-		elsif 
+		elsif
 			make_move(next_move)
 		end
 	end

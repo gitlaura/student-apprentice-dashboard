@@ -57,18 +57,10 @@ describe "MessageCenter" do
 
 	it "displays menus" do
 		@message_center.ui.should_receive(:give)
-		@message_center.display_menu(3)
+		@message_center.display_menu(["Test", "test", "test"])
 	end
 
 	it "creates the main menu" do
-		expect(@message_center.create_menu(1).to_s).to include("Main Menu")
-	end
-
-	it "creates the student account menu" do
-		expect(@message_center.create_menu(2).to_s).to include("Student Account Menu")
-	end
-
-	it "displays not added yet message with correct object" do
-		expect(@message_center).to respond_to(:display_not_added_yet_message)
+		expect(@message_center.create_menu(["Main Menu", "Test", "Test2"]).to_s).to include("Main Menu")
 	end
 end

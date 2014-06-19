@@ -24,7 +24,7 @@ describe "Dashboard" do
 	end
 
 	it "returns the correct menu number" do 
-		expect(@dashboard.get_menu_number(:main_menu)).to eq(1)
+		expect(@dashboard.get_menu_number(:main_menu)).to eq(0)
 		
 	end
 
@@ -35,7 +35,7 @@ describe "Dashboard" do
 	end
 
 	it "makes menu selection and returns next move" do
-		expect(@dashboard.make_selection(1,5)).to eq(:exit)
+		expect(@dashboard.make_selection(0,5)).to eq(:exit)
 	end
 
 	it "returns 'Invalid' if make move is 3 of Main Menu" do 

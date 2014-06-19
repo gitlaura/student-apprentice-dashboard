@@ -3,15 +3,15 @@ require 'menu_selector.rb'
 describe "Menu Selector" do  
 	before (:each) do
 		@menu_selector = MenuSelector.new
-		@menu_number = 1
+		@menu_number = 0
 	end
 
 	it "selects 1 if the menu type is main menu" do  
-		expect(@menu_selector.get_menu_number(:main_menu)).to eq(1)
+		expect(@menu_selector.get_menu_number(:main_menu)).to eq(0)
 	end
 
 	it "selects 2 if the menu type is student account menu" do  
-		expect(@menu_selector.get_menu_number(:student_account_menu)).to eq(2)
+		expect(@menu_selector.get_menu_number(:student_account_menu)).to eq(1)
 	end
 
 	context "when current menu equals Main Menu" do 

@@ -14,6 +14,10 @@ class Dashboard
 		@student = Student.new
 	end
 
+	def display_welcome_message
+		@message_center.welcome_message(@student.first_name, @student.last_name)
+	end
+
 	def get_name(student_or_mentor, first_or_last)
 		@message_center.get_name_message(student_or_mentor, first_or_last)
 		name = @message_center.get_info
@@ -32,16 +36,12 @@ class Dashboard
 		end
 	end
 
-	def display_welcome_message
-		@message_center.welcome_message(@student.first_name, @student.last_name)
-	end
-
 	def get_menu_number(menu_type)
 		@menu_selector.get_menu_number(menu_type)
 	end
 
 	def get_valid_menu_selection(menu_number)
-		@message_center.display_menu(menu_number)
+		@message_center.display_menu(@menu_selector.menus_options[menu_number][1])
 		selection = @message_center.get_menu_selection
 		return selection if selection > 0
 		@message_center.display_invalid_selection_message

@@ -1,48 +1,41 @@
 class MenuSelector
-	attr_accessor :menus, :mentor
+	attr_accessor :menus_options
 
 	def initialize
-		@menus = {
-			:main_menu => 					1,
-			:student_account_menu => 		2,
-			:student_name_menu => 			3,
-			:mentor_menu => 				4,
-			:add_student_menu =>			5,
-			:add_mentor_menu => 			6,
-			:back_to_student_account_menu => 7
-		}
+		@menus_options = [
+			[[:main_menu, :student_account_menu, :invalid, :invalid, :invalid, :exit],
+			["Main Menu", "Student Account", "Schedule (Coming soon)", "Progress (Coming soon)", "Knowledge (Coming soon)", "Exit Program"]],
+			[[:student_account_menu, :student_name_menu, :mentor_menu, :invalid, :invalid, :main_menu],
+			["Student Account Menu", "Student Name", "Mentor Name", "Start Date", "Expected End Date", "Back to Main Menu"]],
+			[[:student_name_menu, :view_student, :update_student, :student_account_menu, :main_menu],
+			["Student Name Menu", "View Student Name", "Update Student Name", "Go Back", "Back to Main Menu"]],
+			[[:mentor_menu, :view_mentor, :update_mentor, :student_account_menu, :main_menu],
+			["Mentor Menu", "View Mentor", "Update Mentor", "Go Back", "Back to Main Menu"]],
+			[[:add_student_menu, :update_student, :student_account_menu],
+			["Options", "Add Student", "Back to Student Account"]],
+			[[:add_mentor_menu, :update_mentor, :student_account_menu],
+			["Options", "Add Mentor", "Back to Student Account"]],
+			[[:back_to_student_account_menu, :student_account_menu, :main_menu],
+			["Options", "Back to Student Account", "Back to Main Menu"]]
+		]
 	end
 
 	def get_menu_number(menu_type)
-		@menus[menu_type]
+		@menus_options.each_with_index do |array, index|
+			if array[0][0] == menu_type
+				return index
+			end
+		end
 	end
 
 	def make_move(menu_number, selection)
-		back_to_student_account_menu = [:student_account_menu, :main_menu]
-		add_mentor_menu = [:update_mentor, :student_account_menu]
-		add_student_menu = [:update_student, :student_account_menu]
-		student_name_menu = [:view_student, :update_student, :student_account_menu, :main_menu]
-		mentor_menu = [:view_mentor, :update_mentor, :student_account_menu, :main_menu]
-		student_account_menu = [:student_name_menu, :mentor_menu, :invalid, :invalid, :main_menu]
-		main_menu = [:student_account_menu, :invalid, :invalid, :invalid, :exit]
-		
-		valid_current_menu_options = [
-			main_menu, student_account_menu, 
-			student_name_menu, mentor_menu,
-			add_student_menu, add_mentor_menu, 
-			back_to_student_account_menu
-		]
-		
-		current_menu = valid_current_menu_options[menu_number-1]
-
+		current_menu = @menus_options[menu_number][0]
 		return :invalid if invalid_selection?(current_menu, selection)
-			
-		menu_index = selection - 1
-		next_move = current_menu[menu_index]
+		next_move = current_menu[selection]
 	end
 
 	def invalid_selection?(current_menu, selection)
-		if selection > current_menu.length
+		if selection > current_menu.length - 1
 			true
 		end
 	end
