@@ -66,9 +66,9 @@ class Dashboard
 	end
 
 	def take_action(action)
-		if action == (:view_student_name)
+		if action == (:view_student)
 			view_student
-		elsif action == (:update_student_name)
+		elsif action == (:update_student)
 			update_student
 			view_student
 		elsif action == (:view_mentor)
@@ -80,13 +80,11 @@ class Dashboard
 	end
 
 	def view_student
-		first_name = @student.first_name
-		last_name = @student.last_name
-		if first_name.nil? || last_name.nil? 
+		if @student.first_name.nil? || @student.last_name.nil? 
 			@message_center.display_not_added_yet_message("student")
 			:add_student_menu
 		else
-			@message_center.display_name("Student", first_name, last_name)
+			@message_center.display_name("Student", @student.first_name, @student.last_name)
 			:back_to_student_account_menu
 		end
 	end
@@ -97,13 +95,11 @@ class Dashboard
 	end
 
 	def view_mentor
-		first_name = @mentor.first_name
-		last_name = @mentor.last_name
-		if first_name.nil? || last_name.nil? 
+		if @mentor.first_name.nil? || @mentor.last_name.nil? 
 			@message_center.display_not_added_yet_message("mentor")
 			:add_mentor_menu
 		else
-			@message_center.display_name("Mentor", first_name, last_name)
+			@message_center.display_name("Mentor", @mentor.first_name, @mentor.last_name)
 			:back_to_student_account_menu
 		end
 	end

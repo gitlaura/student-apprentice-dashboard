@@ -22,7 +22,7 @@ class Runner
 			exit_program
 		elsif next_move == :invalid
 			option_not_available(menu_type)
-		else
+		elsif 
 			make_move(next_move)
 		end
 	end
@@ -31,7 +31,7 @@ class Runner
 		if next_move.to_s.include?("menu")
 			run_menu(next_move)
 		else
-			new_next_move = dashboard.take_action(next_move)
+			new_next_move = @dashboard.take_action(next_move)
 			make_move(new_next_move)
 		end
 	end

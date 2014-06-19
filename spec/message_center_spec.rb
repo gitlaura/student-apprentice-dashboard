@@ -6,40 +6,59 @@ describe "MessageCenter" do
 	end
 
 	it "gets a menu selection" do
-		expect(@message_center).to respond_to(:get_menu_selection)
+		@message_center.ui.should_receive(:receive)
+		@message_center.get_menu_selection
 	end
 
 	it "gets information" do
-		expect(@message_center).to respond_to(:get_info)
+		@message_center.ui.should_receive(:receive)
+		@message_center.get_info
 	end
 
-	it "asks for a users name" do
-		expect(@message_center).to respond_to(:get_first_name)
-		expect(@message_center).to respond_to(:get_last_name)
+	it "asks for a person's name" do
+		@message_center.ui.should_receive(:give).twice
+		@message_center.get_first_name("student")
+		@message_center.get_last_name("mentor")
 	end
 
 	it "displays the welcome message" do
-		expect(@message_center).to respond_to(:welcome_message)
+		@message_center.ui.should_receive(:give)
+		@message_center.welcome_message("First", "Last")
 	end
 
 	it "displays an exit message" do 
-		expect(@message_center).to respond_to(:exit)
+		@message_center.ui.should_receive(:give)
+		@message_center.exit
 	end
 
 	it "displays error if selection is not an integer" do
-		expect(@message_center).to respond_to(:display_invalid_selection_message)
+		@message_center.ui.should_receive(:give)
+		@message_center.display_invalid_selection_message
 	end
 
 	it "displays error if selection is not an string" do
-		expect(@message_center).to respond_to(:display_invalid_string_message)
+		@message_center.ui.should_receive(:give)
+		@message_center.display_invalid_string_message
 	end
 
-	it "displays the invalid selection message" do
-		expect(@message_center).to respond_to(:display_option_not_available_message)
+	it "displays the option is not available message" do
+		@message_center.ui.should_receive(:give)
+		@message_center.display_option_not_available_message
+	end
+
+	it "displays not added yet message with correct thing" do
+		@message_center.ui.should_receive(:give)
+		@message_center.display_not_added_yet_message("thing")
+	end
+
+	it "displays a person's name" do
+		@message_center.ui.should_receive(:give)
+		@message_center.display_name("student", "First", "Last")
 	end
 
 	it "displays menus" do
-		expect(@message_center).to respond_to(:display_menu)
+		@message_center.ui.should_receive(:give)
+		@message_center.display_menu(3)
 	end
 
 	it "creates the main menu" do

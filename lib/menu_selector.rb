@@ -21,7 +21,7 @@ class MenuSelector
 		back_to_student_account_menu = [:student_account_menu, :main_menu]
 		add_mentor_menu = [:update_mentor, :student_account_menu]
 		add_student_menu = [:update_student, :student_account_menu]
-		student_name_menu = [:view_student_name, :update_student_name, :student_account_menu, :main_menu]
+		student_name_menu = [:view_student, :update_student, :student_account_menu, :main_menu]
 		mentor_menu = [:view_mentor, :update_mentor, :student_account_menu, :main_menu]
 		student_account_menu = [:student_name_menu, :mentor_menu, :invalid, :invalid, :main_menu]
 		main_menu = [:student_account_menu, :invalid, :invalid, :invalid, :exit]
