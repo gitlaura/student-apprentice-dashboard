@@ -1,6 +1,5 @@
-class UI
+module UI
 	def give(output_message, output: $stdout)
-		output.puts ""
 		output.puts output_message
 	end
 

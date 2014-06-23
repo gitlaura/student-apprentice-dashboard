@@ -1,4 +1,4 @@
-require 'student_account_menu.rb'
+require 'student.rb'
 
 describe "Student" do 
 	before (:each) do 

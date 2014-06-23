@@ -1,15 +1,15 @@
 require_relative 'message_center.rb'
-require_relative 'menu_selector.rb'
-require_relative 'student_account_menu.rb'
+require_relative 'menu.rb'
+require_relative 'student.rb'
 require_relative 'runner.rb'
 
 class Dashboard
 	attr_accessor :student, :mentor, :menu_selector
-	attr_reader :message_center
+	attr_reader :message_center, :obj
 
 	def initialize
 		@message_center = MessageCenter.new
-		@menu_selector = MenuSelector.new
+		@menu = Menu.new
 		@mentor = Mentor.new
 		@student = Student.new
 	end
@@ -36,24 +36,9 @@ class Dashboard
 		end
 	end
 
-	def get_menu_number(menu_type)
-		@menu_selector.get_menu_number(menu_type)
-	end
-
-	def get_valid_menu_selection(menu_number)
-		@message_center.display_menu(@menu_selector.menus_options[menu_number][1])
-		selection = @message_center.get_menu_selection
-		return selection if selection > 0
-		@message_center.display_invalid_selection_message
-		get_valid_menu_selection(menu_number)
-	end
-
-	def make_selection(menu_number, selection)
-		@menu_selector.make_move(menu_number, selection)
-	end
-
-	def option_not_available
-		@message_center.display_option_not_available_message
+	def run(object)
+		@obj = object.new
+		@obj.run
 	end
 
 	def take_action(action)

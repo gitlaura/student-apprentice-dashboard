@@ -6,7 +6,7 @@ class Runner
 	def run_dashboard
 		@dashboard = Dashboard.new
 		display_welcome_message_with_name
-		run_menu(:main_menu)
+		run(Menu)
 	end
 
 	def display_welcome_message_with_name
@@ -14,31 +14,10 @@ class Runner
 		@dashboard.display_welcome_message
 	end
 	
-	def run_menu(menu_type)
-		menu_number = @dashboard.get_menu_number(menu_type)
-		selection = @dashboard.get_valid_menu_selection(menu_number)
-		next_move = @dashboard.make_selection(menu_number, selection)
-		if next_move == :exit 
-			exit
-		elsif next_move == :invalid
-			option_not_available(menu_type)
-		elsif
-			make_move(next_move)
-		end
-	end
-
-	def make_move(next_move)
-		if next_move.to_s.include?("menu")
-			run_menu(next_move)
-		else
-			new_next_move = @dashboard.take_action(next_move)
-			make_move(new_next_move)
-		end
-	end
-
-	def option_not_available(menu_type)
-		@dashboard.option_not_available
-		run_menu(menu_type)
+	def run(menu_or_action)
+		return exit if menu_or_action == :exit
+		next_move = @dashboard.run(menu_or_action)
+		run(next_move)
 	end
 
 	def exit

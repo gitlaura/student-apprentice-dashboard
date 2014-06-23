@@ -7,6 +7,11 @@ describe "Dashboard" do
 		@dashboard.student.last_name = "Last"
 	end
 
+	it "displays welcome message" do
+		@dashboard.message_center.should_receive(:welcome_message)
+		@dashboard.display_welcome_message
+	end
+
 	it "gets a first name" do 
 		@dashboard.message_center.should_receive(:get_name_message)
 		@dashboard.message_center.should_receive(:get_info) {"first"} 
@@ -18,38 +23,8 @@ describe "Dashboard" do
 		expect(@dashboard.valid_string?("")).to eq(false)
 	end
 
-	it "displays welcome message" do
-		@dashboard.message_center.should_receive(:welcome_message)
-		@dashboard.display_welcome_message
-	end
-
-	it "returns the correct menu number" do 
-		expect(@dashboard.get_menu_number(:main_menu)).to eq(0)
-		
-	end
-
-	it "gets valid menu selection" do
-		@dashboard.message_center.should_receive(:display_menu)
-		@dashboard.message_center.should_receive(:get_menu_selection) {3}
-		expect(@dashboard.get_valid_menu_selection(1)).to eq(3) 
-	end
-
-	it "makes menu selection and returns next move" do
-		expect(@dashboard.make_selection(0,5)).to eq(:exit)
-	end
-
-	it "returns 'Invalid' if make move is 3 of Main Menu" do 
-		expect(@dashboard.make_selection(1, 3)).to eq(:invalid)
-	end
-
-	it "displays option not available message" do 
-		@dashboard.message_center.should_receive(:display_option_not_available_message)
-		@dashboard.option_not_available
-	end
-
-	it "take the correct action based on selection" do
-		@dashboard.message_center.should_receive(:display_name)
-		expect(@dashboard.take_action(:view_student)).to eq(:back_to_student_account_menu)
+	it "runs the menu or action" do 
+		expect(@dashboard).to respond_to(:run)
 	end
 
 	it "selects the correct method to take action" do

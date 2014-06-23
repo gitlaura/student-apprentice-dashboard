@@ -1,14 +1,18 @@
 require 'ui.rb'
 
+class TestClass
+end
+
 describe "UI" do
  	before(:each) do
-		@ui = UI.new
-		
+ 		@test_class = TestClass.new
+ 		@test_class.extend(UI)
+
 		@input = StringIO.new("test info\n")
 		@output = StringIO.new
 
- 		@input_received = @ui.receive(input: @input)
- 		@ui.give("test message", output: @output)
+ 		@input_received = @test_class.receive(input: @input)
+ 		@test_class.give("test message", output: @output)
  	end
 
  	it "should output a message for the user" do
