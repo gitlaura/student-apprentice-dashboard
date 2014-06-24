@@ -9,7 +9,7 @@ class Dashboard
 
 	def initialize
 		@message_center = MessageCenter.new
-		@menu = Menu.new
+		@menu = Menu.new(self)
 		@mentor = Mentor.new
 		@student = Student.new
 	end
@@ -37,7 +37,7 @@ class Dashboard
 	end
 
 	def run(object)
-		@obj = object.new
+		@obj = object.new(self)
 		@obj.run
 	end
 

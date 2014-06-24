@@ -1,66 +1,66 @@
 require_relative 'ui.rb'
+require_relative 'validity.rb'
+require_relative 'view_student.rb'
+require_relative 'update_student.rb'
 
 class Menu
-	include UI
-	attr_reader :title, :valid_menu_options
+	include UI, Validity
+	attr_reader :title, :valid_menu_options, :selection
 
-	def initialize
+	def initialize(dashboard)
 		@title = "Main Menu"
 		@valid_menu_options = [
 			{"Student Account" => StudentAccountMenu},
-			{"Schedule" => :invalid},
-			{"Progress" => :invalid},
-			{"Knowledge" => :invalid},
+			{"Schedule (Coming Soon)" => :invalid},
+			{"Progress (Coming Soon)" => :invalid},
+			{"Knowledge (Coming Soon)" => :invalid},
 			{"Exit Program" => :exit}
 		]
 	end
 
 	def run
 		display_menu
-		selection = receive.to_i
-		if valid_integer?(selection) == false
-			give("Must select one of the menu option numbers. Try again.")
-			run
-		elsif valid_option?(selection) == false
-			give("Option not available. Try again.")
-			run
-		else
-			next_move = @valid_menu_options[selection - 1].values[0]
-		end
+		@selection = get_menu_selection
+		next_move = @valid_menu_options[@selection - 1].values[0]
 	end
 
 	def display_menu
-		give("*#{@title}*")
+		give("\n*#{@title}*")
 		@valid_menu_options.each_with_index do |hash, i|
 			give("#{i + 1}) #{hash.keys[0]}")
 		end
-		give("Please select a numberic option:")
+		give("Please select a numeric option:")
 	end
 
-	def valid_integer?(selection)
-		return false if selection < 1 || selection > @valid_menu_options.length
-	end
-
-	def valid_option?(selection)
-		return false if @valid_menu_options[selection - 1].values[0] == :invalid
+	def get_menu_selection
+		@selection = receive.to_i
+		if valid_integer?(@selection) == false
+			give("\n**Must select one of the menu options. Try again.**")
+			run
+		end
+		if valid_option?(@selection, @valid_menu_options) == false
+			give("\n**Option not available. Try again.**")
+			run
+		end
+		@selection
 	end
 end
 
 class StudentAccountMenu < Menu
-	def initialize
+	def initialize(dashaboard)
 		@title = "Student Account Menu"
 		@valid_menu_options = [
-			{"Student's Name" => NameMenu},
-			{"Student's Mentor" => MentorMenu},
-			{"Expected Start Date" => :invalid},
-			{"Expected End Dare" => :invalid},
+			{"Name" => NameMenu},
+			{"Mentor" => MentorMenu},
+			{"Start Date" => :invalid},
+			{"Expected End Date" => :invalid},
 			{"Back to Main Menu" => Menu}
 		]
 	end
 end
 
 class NameMenu < Menu
-	def initialize
+	def initialize(dashaboard)
 		@title = "Student Menu"
 		@valid_menu_options = [
 			{"View Student" => ViewStudent},
@@ -72,7 +72,7 @@ class NameMenu < Menu
 end
 
 class MentorMenu < Menu
-	def initialize
+	def initialize(dashaboard)
 		@title = "Mentor Menu"
 		@valid_menu_options = [
 			{"View Mentor" => ViewMentor},
@@ -83,10 +83,14 @@ class MentorMenu < Menu
 	end
 end
 
-class ViewStudent
-end
-
-class UpdateStudent
+class BackToStudentAccountMenu < Menu
+	def initialize(dashaboard)
+		@title = "Options"
+		@valid_menu_options = [
+			{"Go Back" => StudentAccountMenu},
+			{"Back to Main Menu" => Menu}
+		]
+	end
 end
 
 class ViewMentor
