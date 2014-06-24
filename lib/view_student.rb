@@ -17,6 +17,6 @@ class ViewStudent
 	end
 
 	def display_name
-		give("Student Name: #{@first_name} #{@last_name}")
+		give("\nStudent Name: #{@first_name} #{@last_name}")
 	end
 end

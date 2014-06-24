@@ -2,6 +2,8 @@ require_relative 'ui.rb'
 require_relative 'validity.rb'
 require_relative 'view_student.rb'
 require_relative 'update_student.rb'
+require_relative 'view_mentor.rb'
+require_relative 'update_mentor.rb'
 
 class Menu
 	include UI, Validity
@@ -47,7 +49,7 @@ class Menu
 end
 
 class StudentAccountMenu < Menu
-	def initialize(dashaboard)
+	def initialize(dashboard)
 		@title = "Student Account Menu"
 		@valid_menu_options = [
 			{"Name" => NameMenu},
@@ -60,7 +62,7 @@ class StudentAccountMenu < Menu
 end
 
 class NameMenu < Menu
-	def initialize(dashaboard)
+	def initialize(dashboard)
 		@title = "Student Menu"
 		@valid_menu_options = [
 			{"View Student" => ViewStudent},
@@ -72,7 +74,7 @@ class NameMenu < Menu
 end
 
 class MentorMenu < Menu
-	def initialize(dashaboard)
+	def initialize(dashboard)
 		@title = "Mentor Menu"
 		@valid_menu_options = [
 			{"View Mentor" => ViewMentor},
@@ -83,18 +85,22 @@ class MentorMenu < Menu
 	end
 end
 
+class AddMentorMenu < Menu
+	def initialize(dashboard)
+		@title = "Options"
+		@valid_menu_options = [
+			{"Add Mentor" => UpdateMentor},
+			{"Go Back" => StudentAccountMenu}
+		]
+	end
+end
+
 class BackToStudentAccountMenu < Menu
-	def initialize(dashaboard)
+	def initialize(dashboard)
 		@title = "Options"
 		@valid_menu_options = [
 			{"Go Back" => StudentAccountMenu},
 			{"Back to Main Menu" => Menu}
 		]
 	end
-end
-
-class ViewMentor
-end
-
-class UpdateMentor
 end

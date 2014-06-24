@@ -1,7 +1,7 @@
 require_relative 'menu.rb'
 require_relative 'dashboard.rb'
 
-class UpdateStudent
+class UpdateMentor
 	include UI
 	include Validity
 
@@ -12,13 +12,13 @@ class UpdateStudent
 	end
 
 	def run
-		@dashboard.student.first_name = get_name("first").capitalize
-		@dashboard.student.last_name = get_name("last").capitalize
-		return ViewStudent
+		@dashboard.mentor.first_name = get_name("first").capitalize
+		@dashboard.mentor.last_name = get_name("last").capitalize
+		return ViewMentor
 	end
 
 	def get_name(first_or_last)
-		give("\nEnter the student's #{first_or_last} name:")
+		give("\nEnter the mentor's #{first_or_last} name:")
 		name = receive
 		return name if valid_string?(name) == true
 		give("Must enter some text.")
