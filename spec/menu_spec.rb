@@ -105,3 +105,29 @@ describe "Back To Student Account Menu" do
 		expect(@back_to_student_account_menu.run).to eq(Menu)
 	end
 end
+
+describe "Start Date Menu" do
+	before (:each) do 
+		@dashboard = Dashboard.new
+		@start_date_menu = StartDateMenu.new(@dashboard)
+	end
+
+	it "returns Main Menu if 4 is selected" do  
+		@start_date_menu.should_receive(:display_menu)
+		@start_date_menu.should_receive(:get_menu_selection) {4}
+		expect(@start_date_menu.run).to eq(Menu)
+	end
+end
+
+describe "Add Start Date Menu" do
+	before (:each) do
+		@dashboard = Dashboard.new
+		@add_start_date_menu = AddStartDateMenu.new(@dashboard)
+	end
+
+	it "returns Update Mentor if 1 is selected" do  
+		@add_start_date_menu.should_receive(:display_menu)
+		@add_start_date_menu.should_receive(:get_menu_selection) {1}
+		expect(@add_start_date_menu.run).to eq(UpdateStartDate)
+	end
+end

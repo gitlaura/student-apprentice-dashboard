@@ -1,10 +1,12 @@
 require_relative 'message_center.rb'
 require_relative 'menu.rb'
 require_relative 'student.rb'
+require_relative 'mentor.rb'
 require_relative 'runner.rb'
+require_relative 'start_date.rb'
 
 class Dashboard
-	attr_accessor :student, :mentor, :menu_selector
+	attr_accessor :student, :mentor, :start_date
 	attr_reader :message_center, :obj
 
 	def initialize
@@ -12,6 +14,7 @@ class Dashboard
 		@menu = Menu.new(self)
 		@mentor = Mentor.new
 		@student = Student.new
+		@start_date = StartDate.new
 	end
 
 	def display_welcome_message
