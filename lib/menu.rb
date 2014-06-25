@@ -4,6 +4,8 @@ require_relative 'view_student.rb'
 require_relative 'update_student.rb'
 require_relative 'view_mentor.rb'
 require_relative 'update_mentor.rb'
+require_relative 'view_start_date.rb'
+require_relative 'update_start_date.rb'
 
 class Menu
 	include UI, Validity
@@ -109,8 +111,8 @@ class StartDateMenu < Menu
 	def initialize(dashboard)
 		@title = "Start Date Menu"
 		@valid_menu_options = [
-			{"View Start Date" => :invalid},
-			{"Update Start Date" => :invalid},
+			{"View Start Date" => ViewStartDate},
+			{"Update Start Date" => UpdateStartDate},
 			{"Go Back" => StudentAccountMenu},
 			{"Back to Main Menu" => Menu}
 		]
@@ -126,7 +128,4 @@ class AddStartDateMenu < Menu
 			{"Go Back" => StudentAccountMenu}
 		]
 	end
-end
-
-class UpdateStartDate
 end

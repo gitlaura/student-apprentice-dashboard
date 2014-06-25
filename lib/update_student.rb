@@ -14,7 +14,7 @@ class UpdateStudent
 	def run
 		@dashboard.student.first_name = get_name("first").capitalize
 		@dashboard.student.last_name = get_name("last").capitalize
-		return ViewStudent
+		ViewStudent
 	end
 
 	def get_name(first_or_last)

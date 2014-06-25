@@ -8,15 +8,15 @@ class MessageCenter
 	end
 
 	def get_name_message(student_or_mentor, first_or_last)
-		give("What is the #{student_or_mentor}'s #{first_or_last} name? ")
+		give("\nWhat is the #{student_or_mentor}'s #{first_or_last} name? ")
 	end
 
 	def welcome_message(first, last)
-		give("Welcome to #{first} #{last}'s Dashboard!")
+		give("\nWelcome to #{first} #{last}'s Dashboard!")
 	end
 
 	def exit
-		give("Goodbye!")
+		give("\nGoodbye!")
 	end
 
 	def display_invalid_string_message

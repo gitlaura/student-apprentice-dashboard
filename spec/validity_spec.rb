@@ -26,4 +26,10 @@ describe "Validity" do
  		expect(@test_class.valid_option?(3, @options)).to eq(false)
  		expect(@test_class.valid_option?(1, @options)).to eq(true)
  	end
+
+ 	it "checks for valid date" do 
+ 		expect(@test_class.valid_date?("05/30/1987")).to eq(true)
+ 		expect(@test_class.valid_date?("5/30/1987")).to eq(false)
+ 		expect(@test_class.valid_date?("o5/30/1p87")).to eq(false)
+ 	end
 end 	

@@ -1,5 +1,6 @@
 require_relative 'menu.rb'
 require_relative 'dashboard.rb'
+require 'date'
 
 class ViewStartDate
 	include UI
@@ -14,7 +15,7 @@ class ViewStartDate
 
 	def run
 		if @month.nil? || @day.nil?
-			give("\n Start date has not been added yet.")
+			give("\nStart date has not been added yet.")
 			return AddStartDateMenu
 		end
 		display_date
@@ -22,6 +23,6 @@ class ViewStartDate
 	end
 
 	def display_date
-		give("Start Date: #{@month} #{@day}, #{@year}")
+		give("\nStart Date: #{Date::MONTHNAMES[@month]} #{@day}, #{@year}")
 	end
 end

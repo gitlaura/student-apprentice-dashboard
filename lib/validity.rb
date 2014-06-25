@@ -19,4 +19,14 @@ module Validity
 		return false if selection > options.length || options[selection - 1].values[0] == :invalid
 		true
 	end
+
+	def valid_date?(input)
+		return false if input.length != 10
+		return false if input[2] != "/"
+		return false if input[5] != "/"
+		return false if input[0..1].to_i == 0
+		return false if input[0..1].to_i == 0
+		return false if input[0..1].to_i == 0
+		true
+	end	
 end
