@@ -6,6 +6,10 @@ require_relative 'view_mentor.rb'
 require_relative 'update_mentor.rb'
 require_relative 'view_start_date.rb'
 require_relative 'update_start_date.rb'
+require_relative 'view_end_date.rb'
+require_relative 'update_end_date.rb'
+require_relative 'view_daily_schedule.rb'
+require_relative 'update_daily_schedule.rb'
 
 class Menu
 	include UI, Validity
@@ -15,7 +19,7 @@ class Menu
 		@title = "Main Menu"
 		@valid_menu_options = [
 			{"Student Account" => StudentAccountMenu},
-			{"Schedule (Coming Soon)" => :invalid},
+			{"Schedule" => ScheduleMenu},
 			{"Progress (Coming Soon)" => :invalid},
 			{"Knowledge (Coming Soon)" => :invalid},
 			{"Exit Program" => :exit}
@@ -121,7 +125,6 @@ end
 
 class AddStartDateMenu < Menu
 	def initialize(dashboard)
-		@title = "Start Date Menu"
 		@title = "Options"
 		@valid_menu_options = [
 			{"Add Start Date" => UpdateStartDate},
@@ -144,11 +147,53 @@ end
 
 class AddEndDateMenu < Menu
 	def initialize(dashboard)
-		@title = "End Date Menu"
 		@title = "Options"
 		@valid_menu_options = [
 			{"Add End Date" => UpdateEndDate},
 			{"Go Back" => StudentAccountMenu}
+		]
+	end
+end
+
+class ScheduleMenu < Menu
+	def initialize(dashboard)
+		@title = "Schedule Menu"
+		@valid_menu_options = [
+			{"Daily Schedule" => DailyScheduleMenu},
+			{"View Time Lapsed" => :invalid},
+			{"Back to Main Menu" => Menu}
+		]
+	end
+end
+
+class DailyScheduleMenu < Menu
+	def initialize(dashboard)
+		@title = "Daily Schedule Menu"
+		@valid_menu_options = [
+			{"View Daily Schedule" => ViewDailySchedule},
+			{"Update Daily Schedule" => UpdateDailySchedule},
+			{"Go Back" => ScheduleMenu},
+			{"Back to Main Menu" => Menu}
+		]
+	end
+end
+
+class AddDailyScheduleMenu < Menu
+	def initialize(dashboard)
+		@title = "Options"
+		@valid_menu_options = [
+			{"Add Daily Schedule" => UpdateDailySchedule},
+			{"Go Back" => ScheduleMenu}
+		]
+	end
+end
+
+class BackToScheduleMenu < Menu
+	def initialize(dashboard)
+		@title = "Options"
+		@valid_menu_options = [
+			{"Go Back" => ScheduleMenu},
+			{"Back to Main Menu" => Menu}
 		]
 	end
 end

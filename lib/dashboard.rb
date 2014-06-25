@@ -4,9 +4,11 @@ require_relative 'student.rb'
 require_relative 'mentor.rb'
 require_relative 'runner.rb'
 require_relative 'start_date.rb'
+require_relative 'end_date.rb'
+require_relative 'daily_schedule.rb'
 
 class Dashboard
-	attr_accessor :student, :mentor, :start_date, :end_date
+	attr_accessor :student, :mentor, :start_date, :end_date, :daily_schedule
 	attr_reader :message_center, :obj
 
 	def initialize
@@ -16,6 +18,7 @@ class Dashboard
 		@student = Student.new
 		@start_date = StartDate.new
 		@end_date = EndDate.new
+		@daily_schedule = DailySchedule.new
 	end
 
 	def display_welcome_message
@@ -45,48 +48,9 @@ class Dashboard
 		@obj.run
 	end
 
-	def take_action(action)
-		if action == (:view_student)
-			view_student
-		elsif action == (:update_student)
-			update_student
-			view_student
-		elsif action == (:view_mentor)
-			view_mentor
-		elsif action == (:update_mentor)
-			update_mentor
-			view_mentor
-		end
-	end
-
-	def view_student
-		if @student.first_name.nil? || @student.last_name.nil? 
-			@message_center.display_not_added_yet_message("student")
-			:add_student_menu
-		else
-			@message_center.display_name("Student", @student.first_name, @student.last_name)
-			:back_to_student_account_menu
-		end
-	end
-
 	def update_student
 		@student.first_name = get_name("student", "first")
 		@student.last_name = get_name("student", "last")
-	end
-
-	def view_mentor
-		if @mentor.first_name.nil? || @mentor.last_name.nil? 
-			@message_center.display_not_added_yet_message("mentor")
-			:add_mentor_menu
-		else
-			@message_center.display_name("Mentor", @mentor.first_name, @mentor.last_name)
-			:back_to_student_account_menu
-		end
-	end
-
-	def update_mentor
-		@mentor.first_name = get_name("mentor", "first")
-		@mentor.last_name = get_name("mentor", "last")
 	end
 
 	def exit

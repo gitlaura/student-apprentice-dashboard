@@ -125,7 +125,7 @@ describe "Add Start Date Menu" do
 		@add_start_date_menu = AddStartDateMenu.new(@dashboard)
 	end
 
-	it "returns Update Mentor if 1 is selected" do  
+	it "returns Update Start Date if 1 is selected" do  
 		@add_start_date_menu.should_receive(:display_menu)
 		@add_start_date_menu.should_receive(:get_menu_selection) {1}
 		expect(@add_start_date_menu.run).to eq(UpdateStartDate)
@@ -151,9 +151,48 @@ describe "Add End Date Menu" do
 		@add_end_date_menu = AddEndDateMenu.new(@dashboard)
 	end
 
-	it "returns Update Mentor if 1 is selected" do  
+	it "returns Update End Date if 1 is selected" do  
 		@add_end_date_menu.should_receive(:display_menu)
 		@add_end_date_menu.should_receive(:get_menu_selection) {1}
 		expect(@add_end_date_menu.run).to eq(UpdateEndDate)
+	end
+end
+
+describe "Schedule Menu" do
+	before (:each) do
+		@dashboard = Dashboard.new
+		@schedule_menu = ScheduleMenu.new(@dashboard)
+	end
+
+	it "returns Daily Schedule if 1 is selected" do  
+		@schedule_menu.should_receive(:display_menu)
+		@schedule_menu.should_receive(:get_menu_selection) {1}
+		expect(@schedule_menu.run).to eq(DailyScheduleMenu)
+	end
+end
+
+describe "Daily Schedule Menu" do
+	before (:each) do
+		@dashboard = Dashboard.new
+		@daily_schedule_menu = DailyScheduleMenu.new(@dashboard)
+	end
+
+	it "returns View Daily Schedule if 1 is selected" do  
+		@daily_schedule_menu.should_receive(:display_menu)
+		@daily_schedule_menu.should_receive(:get_menu_selection) {1}
+		expect(@daily_schedule_menu.run).to eq(ViewDailySchedule)
+	end
+end
+
+describe "Add Daily Schedule Menu" do
+	before (:each) do
+		@dashboard = Dashboard.new
+		@add_daily_schedule_menu = AddDailyScheduleMenu.new(@dashboard)
+	end
+
+	it "returns View Daily Schedule if 1 is selected" do  
+		@add_daily_schedule_menu.should_receive(:display_menu)
+		@add_daily_schedule_menu.should_receive(:get_menu_selection) {1}
+		expect(@add_daily_schedule_menu.run).to eq(UpdateDailySchedule)
 	end
 end

@@ -27,18 +27,6 @@ describe "Dashboard" do
 		expect(@dashboard).to respond_to(:run)
 	end
 
-	it "selects the correct method to take action" do
-		expect(@dashboard).to respond_to(:view_mentor)
-		expect(@dashboard).to respond_to(:update_mentor)
-		expect(@dashboard).to respond_to(:view_student)
-		expect(@dashboard).to respond_to(:update_student)
-	end
-
-	it "update mentor asks for a new first and last name" do 
-		@dashboard.should_receive(:get_name).twice
-		@dashboard.update_mentor
-	end
-
 	it "exits program" do 
 		@dashboard.message_center.should_receive(:exit)
 		@dashboard.exit
