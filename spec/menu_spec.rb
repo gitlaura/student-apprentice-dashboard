@@ -131,3 +131,29 @@ describe "Add Start Date Menu" do
 		expect(@add_start_date_menu.run).to eq(UpdateStartDate)
 	end
 end
+
+describe "End Date Menu" do
+	before (:each) do 
+		@dashboard = Dashboard.new
+		@end_date_menu = EndDateMenu.new(@dashboard)
+	end
+
+	it "returns Main Menu if 4 is selected" do  
+		@end_date_menu.should_receive(:display_menu)
+		@end_date_menu.should_receive(:get_menu_selection) {4}
+		expect(@end_date_menu.run).to eq(Menu)
+	end
+end
+
+describe "Add End Date Menu" do
+	before (:each) do
+		@dashboard = Dashboard.new
+		@add_end_date_menu = AddEndDateMenu.new(@dashboard)
+	end
+
+	it "returns Update Mentor if 1 is selected" do  
+		@add_end_date_menu.should_receive(:display_menu)
+		@add_end_date_menu.should_receive(:get_menu_selection) {1}
+		expect(@add_end_date_menu.run).to eq(UpdateEndDate)
+	end
+end

@@ -6,7 +6,7 @@ require_relative 'runner.rb'
 require_relative 'start_date.rb'
 
 class Dashboard
-	attr_accessor :student, :mentor, :start_date
+	attr_accessor :student, :mentor, :start_date, :end_date
 	attr_reader :message_center, :obj
 
 	def initialize
@@ -15,6 +15,7 @@ class Dashboard
 		@mentor = Mentor.new
 		@student = Student.new
 		@start_date = StartDate.new
+		@end_date = EndDate.new
 	end
 
 	def display_welcome_message

@@ -57,7 +57,7 @@ class StudentAccountMenu < Menu
 			{"Name" => NameMenu},
 			{"Mentor" => MentorMenu},
 			{"Start Date" => StartDateMenu},
-			{"Expected End Date" => :invalid},
+			{"Expected End Date" => EndDateMenu},
 			{"Back to Main Menu" => Menu}
 		]
 	end
@@ -125,6 +125,29 @@ class AddStartDateMenu < Menu
 		@title = "Options"
 		@valid_menu_options = [
 			{"Add Start Date" => UpdateStartDate},
+			{"Go Back" => StudentAccountMenu}
+		]
+	end
+end
+
+class EndDateMenu < Menu
+	def initialize(dashboard)
+		@title = "End Date Menu"
+		@valid_menu_options = [
+			{"View End Date" => ViewEndDate},
+			{"Update End Date" => UpdateEndDate},
+			{"Go Back" => StudentAccountMenu},
+			{"Back to Main Menu" => Menu}
+		]
+	end
+end
+
+class AddEndDateMenu < Menu
+	def initialize(dashboard)
+		@title = "End Date Menu"
+		@title = "Options"
+		@valid_menu_options = [
+			{"Add End Date" => UpdateEndDate},
 			{"Go Back" => StudentAccountMenu}
 		]
 	end
