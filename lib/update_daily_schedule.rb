@@ -1,6 +1,3 @@
-require_relative 'menu.rb'
-require_relative 'dashboard.rb'
-
 class UpdateDailySchedule
 	include UI
 	include Validity
@@ -31,7 +28,7 @@ class UpdateDailySchedule
 					@days << "No"
 					next_day = true
 				else
-					give("\nNot a valid response.")
+					give("\n**Not a valid response.**")
 				end
 			end
 		end

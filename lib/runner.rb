@@ -1,17 +1,12 @@
 require_relative 'dashboard.rb'
 
 class Runner
-	attr_accessor :dashboard, :student
+	attr_accessor :dashboard
 
 	def run_dashboard
 		@dashboard = Dashboard.new
-		display_welcome_message_with_name
-		run(Menu)
-	end
-
-	def display_welcome_message_with_name
-		@dashboard.update_student
 		@dashboard.display_welcome_message
+		run(MainMenu)
 	end
 	
 	def run(menu_or_action)

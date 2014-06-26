@@ -25,8 +25,8 @@ module Validity
 		return false if input[2] != "/"
 		return false if input[5] != "/"
 		return false if input[0..1].to_i == 0
-		return false if input[0..1].to_i == 0
-		return false if input[0..1].to_i == 0
+		return false if input[3..4].to_i == 0
+		return false if input[6..9].to_i == 0
 		true
 	end	
 end

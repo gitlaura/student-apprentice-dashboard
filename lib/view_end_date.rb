@@ -1,5 +1,3 @@
-require_relative 'menu.rb'
-require_relative 'dashboard.rb'
 require 'date'
 
 class ViewEndDate

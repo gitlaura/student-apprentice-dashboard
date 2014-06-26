@@ -1,43 +1,43 @@
 require 'menu.rb'
 
-describe "Menu" do
+describe "Main Menu" do
 	before (:each) do 
 		@dashboard = Dashboard.new
-		@menu = Menu.new(@dashboard)
+		@main_menu = MainMenu.new(@dashboard)
 	end
 
 	it "has a title named Main Menu" do 
-		expect(@menu.title).to eq("Main Menu")
+		expect(@main_menu.title).to eq("Main Menu")
 	end
 
 	it "has valid menu options" do 
-		expect(@menu.valid_menu_options[0].nil?).to eq(false)
+		expect(@main_menu.valid_menu_options[0].nil?).to eq(false)
 	end
 
 	it "has the first menu option key as Student Account" do 
-		expect(@menu.valid_menu_options[0].keys[0]).to eq("Student Account")
+		expect(@main_menu.valid_menu_options[0].keys[0]).to eq("Student Account")
 	end
 
 	it "has the fifth menu option value as Exit" do 
-		expect(@menu.valid_menu_options[4].values[0]).to eq(:exit)
+		expect(@main_menu.valid_menu_options[4].values[0]).to eq(:exit)
 	end
 
 	it "returns :exit if user selects 5 on main menu" do 
-		@menu.should_receive(:display_menu)
-		@menu.should_receive(:get_menu_selection) {5}
-		expect(@menu.run).to eq(:exit)
+		@main_menu.should_receive(:display_menu)
+		@main_menu.should_receive(:get_menu_selection) {5}
+		expect(@main_menu.run).to eq(:exit)
 	end
 
 	it "calls the give method from display menu" do 
-		@menu.should_receive(:give).exactly(7).times
-		@menu.display_menu
+		@main_menu.should_receive(:give).exactly(7).times
+		@main_menu.display_menu
 	end
 
 	it "calls the receive method from get menu selection" do 
-		@menu.should_receive(:receive) {5}
-		@menu.should_receive(:valid_integer?)
-		@menu.should_receive(:valid_option?)
-		@menu.get_menu_selection
+		@main_menu.should_receive(:receive) {5}
+		@main_menu.should_receive(:valid_integer?)
+		@main_menu.should_receive(:valid_option?)
+		@main_menu.get_menu_selection
 	end
 end
 
@@ -102,7 +102,7 @@ describe "Back To Student Account Menu" do
 	it "returns Main Menu if 2 is selected" do  
 		@back_to_student_account_menu.should_receive(:display_menu)
 		@back_to_student_account_menu.should_receive(:get_menu_selection) {2}
-		expect(@back_to_student_account_menu.run).to eq(Menu)
+		expect(@back_to_student_account_menu.run).to eq(MainMenu)
 	end
 end
 
@@ -115,7 +115,7 @@ describe "Start Date Menu" do
 	it "returns Main Menu if 4 is selected" do  
 		@start_date_menu.should_receive(:display_menu)
 		@start_date_menu.should_receive(:get_menu_selection) {4}
-		expect(@start_date_menu.run).to eq(Menu)
+		expect(@start_date_menu.run).to eq(MainMenu)
 	end
 end
 
@@ -141,7 +141,7 @@ describe "End Date Menu" do
 	it "returns Main Menu if 4 is selected" do  
 		@end_date_menu.should_receive(:display_menu)
 		@end_date_menu.should_receive(:get_menu_selection) {4}
-		expect(@end_date_menu.run).to eq(Menu)
+		expect(@end_date_menu.run).to eq(MainMenu)
 	end
 end
 

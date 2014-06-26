@@ -1,29 +1,11 @@
 require_relative 'ui.rb'
 require_relative 'validity.rb'
-require_relative 'view_student.rb'
-require_relative 'update_student.rb'
-require_relative 'view_mentor.rb'
-require_relative 'update_mentor.rb'
-require_relative 'view_start_date.rb'
-require_relative 'update_start_date.rb'
-require_relative 'view_end_date.rb'
-require_relative 'update_end_date.rb'
-require_relative 'view_daily_schedule.rb'
-require_relative 'update_daily_schedule.rb'
 
 class Menu
 	include UI, Validity
 	attr_reader :title, :valid_menu_options, :selection
 
 	def initialize(dashboard)
-		@title = "Main Menu"
-		@valid_menu_options = [
-			{"Student Account" => StudentAccountMenu},
-			{"Schedule" => ScheduleMenu},
-			{"Progress (Coming Soon)" => :invalid},
-			{"Knowledge (Coming Soon)" => :invalid},
-			{"Exit Program" => :exit}
-		]
 	end
 
 	def run
@@ -54,6 +36,19 @@ class Menu
 	end
 end
 
+class MainMenu < Menu
+	def initialize(dashboard)
+		@title = "Main Menu"
+		@valid_menu_options = [
+			{"Student Account" => StudentAccountMenu},
+			{"Schedule" => ScheduleMenu},
+			{"Progress (Coming Soon)" => :invalid},
+			{"Knowledge (Coming Soon)" => :invalid},
+			{"Exit Program" => :exit}
+		]
+	end
+end
+
 class StudentAccountMenu < Menu
 	def initialize(dashboard)
 		@title = "Student Account Menu"
@@ -62,7 +57,7 @@ class StudentAccountMenu < Menu
 			{"Mentor" => MentorMenu},
 			{"Start Date" => StartDateMenu},
 			{"Expected End Date" => EndDateMenu},
-			{"Back to Main Menu" => Menu}
+			{"Back to Main Menu" => MainMenu}
 		]
 	end
 end
@@ -74,7 +69,7 @@ class NameMenu < Menu
 			{"View Student" => ViewStudent},
 			{"Update Student" => UpdateStudent},
 			{"Go Back" => StudentAccountMenu},
-			{"Back to Main Menu" => Menu}
+			{"Back to Main Menu" => MainMenu}
 		]
 	end
 end
@@ -86,7 +81,7 @@ class MentorMenu < Menu
 			{"View Mentor" => ViewMentor},
 			{"Update Mentor" => UpdateMentor},
 			{"Go Back" => StudentAccountMenu},
-			{"Back to Main Menu" => Menu}
+			{"Back to Main Menu" => MainMenu}
 		]
 	end
 end
@@ -106,7 +101,7 @@ class BackToStudentAccountMenu < Menu
 		@title = "Options"
 		@valid_menu_options = [
 			{"Go Back" => StudentAccountMenu},
-			{"Back to Main Menu" => Menu}
+			{"Back to Main Menu" => MainMenu}
 		]
 	end
 end
@@ -118,7 +113,7 @@ class StartDateMenu < Menu
 			{"View Start Date" => ViewStartDate},
 			{"Update Start Date" => UpdateStartDate},
 			{"Go Back" => StudentAccountMenu},
-			{"Back to Main Menu" => Menu}
+			{"Back to Main Menu" => MainMenu}
 		]
 	end
 end
@@ -140,7 +135,7 @@ class EndDateMenu < Menu
 			{"View End Date" => ViewEndDate},
 			{"Update End Date" => UpdateEndDate},
 			{"Go Back" => StudentAccountMenu},
-			{"Back to Main Menu" => Menu}
+			{"Back to Main Menu" => MainMenu}
 		]
 	end
 end
@@ -160,8 +155,8 @@ class ScheduleMenu < Menu
 		@title = "Schedule Menu"
 		@valid_menu_options = [
 			{"Daily Schedule" => DailyScheduleMenu},
-			{"View Time Lapsed" => :invalid},
-			{"Back to Main Menu" => Menu}
+			{"View Time Lapsed (Coming Soon)" => :invalid},
+			{"Back to Main Menu" => MainMenu}
 		]
 	end
 end
@@ -173,7 +168,7 @@ class DailyScheduleMenu < Menu
 			{"View Daily Schedule" => ViewDailySchedule},
 			{"Update Daily Schedule" => UpdateDailySchedule},
 			{"Go Back" => ScheduleMenu},
-			{"Back to Main Menu" => Menu}
+			{"Back to Main Menu" => MainMenu}
 		]
 	end
 end
@@ -193,7 +188,7 @@ class BackToScheduleMenu < Menu
 		@title = "Options"
 		@valid_menu_options = [
 			{"Go Back" => ScheduleMenu},
-			{"Back to Main Menu" => Menu}
+			{"Back to Main Menu" => MainMenu}
 		]
 	end
 end

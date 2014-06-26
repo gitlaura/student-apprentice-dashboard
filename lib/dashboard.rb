@@ -1,18 +1,27 @@
-require_relative 'message_center.rb'
 require_relative 'menu.rb'
 require_relative 'student.rb'
 require_relative 'mentor.rb'
-require_relative 'runner.rb'
 require_relative 'start_date.rb'
 require_relative 'end_date.rb'
 require_relative 'daily_schedule.rb'
+require_relative 'view_student.rb'
+require_relative 'update_student.rb'
+require_relative 'view_mentor.rb'
+require_relative 'update_mentor.rb'
+require_relative 'view_start_date.rb'
+require_relative 'update_start_date.rb'
+require_relative 'view_end_date.rb'
+require_relative 'update_end_date.rb'
+require_relative 'view_daily_schedule.rb'
+require_relative 'update_daily_schedule.rb'
+require_relative 'ui.rb'
 
 class Dashboard
+	include UI
+
 	attr_accessor :student, :mentor, :start_date, :end_date, :daily_schedule
-	attr_reader :message_center, :obj
 
 	def initialize
-		@message_center = MessageCenter.new
 		@menu = Menu.new(self)
 		@mentor = Mentor.new
 		@student = Student.new
@@ -22,38 +31,19 @@ class Dashboard
 	end
 
 	def display_welcome_message
-		@message_center.welcome_message(@student.first_name, @student.last_name)
-	end
-
-	def get_name(student_or_mentor, first_or_last)
-		@message_center.get_name_message(student_or_mentor, first_or_last)
-		name = @message_center.get_info
-		return name.capitalize if valid_string?(name)
-		@message_center.display_invalid_string_message
-		get_name(student_or_mentor, first_or_last)
-	end
-
-	def valid_string?(input)
-		if input.length == 0
-			false
-		else
-			input.each_char do |letter|
-				return false if !(letter =~ /[a-z]/i)
-			end
-		end
-	end
-
-	def run(object)
-		@obj = object.new(self)
-		@obj.run
+		update_student
+		give("\nWelcome to #{@student.first_name}'s #{@student.last_name} Dashboard!")
 	end
 
 	def update_student
-		@student.first_name = get_name("student", "first")
-		@student.last_name = get_name("student", "last")
+		UpdateStudent.new(self).update_student_name
+	end
+
+	def run(object)
+		object.new(self).run
 	end
 
 	def exit
-		@message_center.exit
+		give("\nGoodbye!")
 	end
 end

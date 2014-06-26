@@ -1,6 +1,3 @@
-require_relative 'menu.rb'
-require_relative 'dashboard.rb'
-
 class ViewStudent
 	include UI
 
@@ -13,7 +10,7 @@ class ViewStudent
 
 	def run
 		display_name
-		return BackToStudentAccountMenu
+		BackToStudentAccountMenu
 	end
 
 	def display_name

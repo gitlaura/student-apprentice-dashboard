@@ -3,27 +3,24 @@ require 'runner.rb'
 describe "Runner" do 
 	before(:each) do 
 		@runner = Runner.new
-		@runner.dashboard = Dashboard.new
 	end
 
-	it "runs the program" do
-		@runner.should_receive(:display_welcome_message_with_name)
-		@runner.should_receive(:run)
-		@runner.run_dashboard
-	end
-
-	it "displays welcome message with names" do
-		@runner.dashboard.should_receive(:update_student)
-		@runner.dashboard.should_receive(:display_welcome_message)
-		@runner.display_welcome_message_with_name
+	it "runs the dashboard" do
+		expect(@runner).to respond_to(:run_dashboard)
 	end
 
 	it "runs menus or actions" do
-		@runner.dashboard.should_receive(:exit)
-		@runner.run(:exit)
+		@dashboard = Dashboard.new
+		@runner.dashboard = @dashboard
+		@runner.dashboard.should_receive(:run) {:exit}
+		@runner.should_receive(:exit)
+		@runner.run(UpdateStudent)
 	end
 
 	it "exits the program" do
-		expect(@runner).to respond_to(:exit)
+		@dashboard = Dashboard.new
+		@runner.dashboard = @dashboard
+		@runner.dashboard.should_receive(:exit)
+		@runner.exit
 	end
 end

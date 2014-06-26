@@ -1,6 +1,3 @@
-require_relative 'menu.rb'
-require_relative 'dashboard.rb'
-
 class ViewMentor
 	include UI
 	attr_accessor :first_name, :last_name

@@ -1,6 +1,3 @@
-require_relative 'menu.rb'
-require_relative 'dashboard.rb'
-
 class UpdateStartDate
 	include UI
 	include Validity
@@ -23,7 +20,7 @@ class UpdateStartDate
 		give("\nPlease enter the student's start date (mm/dd/yyyy):")
 		input = receive
 		return input if valid_date?(input) == true
-		give("\nNot a valid date.")
+		give("\n**Not a valid date.**")
 		get_date
 	end
 end

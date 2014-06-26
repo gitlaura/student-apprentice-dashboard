@@ -7,20 +7,10 @@ describe "Dashboard" do
 		@dashboard.student.last_name = "Last"
 	end
 
-	it "displays welcome message" do
-		@dashboard.message_center.should_receive(:welcome_message)
+	it "gets a student's name and displays welcome message " do
+		@dashboard.should_receive(:update_student)
+		@dashboard.should_receive(:give)
 		@dashboard.display_welcome_message
-	end
-
-	it "gets a first name" do 
-		@dashboard.message_center.should_receive(:get_name_message)
-		@dashboard.message_center.should_receive(:get_info) {"first"} 
-		expect(@dashboard.get_name("student", "first")).to eq("First")
-	end
-
-	it "returns false if string is not valid" do
-		expect(@dashboard.valid_string?("lau/a")).to eq(false)
-		expect(@dashboard.valid_string?("")).to eq(false)
 	end
 
 	it "runs the menu or action" do 
@@ -28,7 +18,7 @@ describe "Dashboard" do
 	end
 
 	it "exits program" do 
-		@dashboard.message_center.should_receive(:exit)
+		@dashboard.should_receive(:give)
 		@dashboard.exit
 	end
 end

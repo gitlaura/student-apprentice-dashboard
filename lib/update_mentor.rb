@@ -1,6 +1,3 @@
-require_relative 'menu.rb'
-require_relative 'dashboard.rb'
-
 class UpdateMentor
 	include UI
 	include Validity
@@ -14,7 +11,7 @@ class UpdateMentor
 	def run
 		@dashboard.mentor.first_name = get_name("first").capitalize
 		@dashboard.mentor.last_name = get_name("last").capitalize
-		return ViewMentor
+		ViewMentor
 	end
 
 	def get_name(first_or_last)
