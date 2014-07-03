@@ -9,6 +9,8 @@ class Runner
 		@dashboard.display_welcome_message
 		run
 	end
+
+# Delete this
 	
 	def run(menu_or_action = MainMenu)
 		return exit if menu_or_action == :exit
