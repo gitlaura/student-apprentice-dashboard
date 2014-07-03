@@ -21,6 +21,6 @@ class ViewStartDate
 	end
 
 	def display_date
-		give("\nStart Date: #{Date::MONTHNAMES[@month]} #{@day}, #{@year}")
+		give("\nStart Date: #{@month}/#{@day}/#{@year}")
 	end
 end
