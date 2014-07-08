@@ -22,7 +22,12 @@ module Validity
 		true
 	end
 
-	def valid_date?(year, month, day)
-		return Date.valid_date?(year, month, day)
+	def valid_date?(input)
+		begin
+			Date.strptime(input, '%m/%d/%Y')
+		rescue
+			return false
+		end
+		return true
 	end	
 end

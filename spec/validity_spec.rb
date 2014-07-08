@@ -28,8 +28,9 @@ describe "Validity" do
  	end
 
  	it "checks for valid date" do 
- 		expect(@test_class.valid_date?(1987,5,30)).to eq(true)
- 		expect(@test_class.valid_date?(1987,5,32)).to eq(false)
- 		expect(@test_class.valid_date?(1987,13,30)).to eq(false)
+ 		expect(@test_class.valid_date?("5/30/87")).to eq(true)
+ 		expect(@test_class.valid_date?("66666")).to eq(false)
+ 		expect(@test_class.valid_date?("5/32/2014")).to eq(false)
+ 		expect(@test_class.valid_date?("13/30/2014")).to eq(false)
  	end
 end 	

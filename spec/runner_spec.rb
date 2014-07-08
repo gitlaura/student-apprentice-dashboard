@@ -9,18 +9,17 @@ describe "Runner" do
 		expect(@runner).to respond_to(:run_dashboard)
 	end
 
+	it "runs the dashboard" do
+		expect(@runner).to respond_to(:next_move)
+	end
+
 	it "runs menus or actions" do
-		@dashboard = Dashboard.new
-		@runner.dashboard = @dashboard
-		@runner.dashboard.should_receive(:run) {:exit}
-		@runner.should_receive(:exit)
+		expect(@runner).to receive(:next_move) {:exit}
+		expect(@runner).to receive(:exit)
 		@runner.run(UpdateStudent)
 	end
 
 	it "exits the program" do
-		@dashboard = Dashboard.new
-		@runner.dashboard = @dashboard
-		@runner.dashboard.should_receive(:exit)
-		@runner.exit
+		expect(@runner).to respond_to(:exit)
 	end
 end
