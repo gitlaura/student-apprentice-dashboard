@@ -8,8 +8,8 @@ describe "Dashboard" do
 	end
 
 	it "gets a student's name and displays welcome message " do
-		@dashboard.should_receive(:update_student)
-		@dashboard.should_receive(:give)
+		expect(@dashboard).to receive(:update_student)
+		expect(@dashboard).to receive(:give)
 		@dashboard.display_welcome_message
 	end
 
@@ -18,7 +18,7 @@ describe "Dashboard" do
 	end
 
 	it "exits program" do 
-		@dashboard.should_receive(:give)
+		expect(@dashboard).to receive(:give)
 		@dashboard.exit
 	end
 end
